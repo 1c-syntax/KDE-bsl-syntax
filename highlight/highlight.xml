@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language version="1" name="bsl" kateversion="5.62" section="Sources" extensions="*.bsl;*.os" licence="MIT" author="Viktor Gukov (zchokobo@gmail.com)">
+	<highlighting>
+		<list name="keywords">
+			<item>If</item>
+			<item>Then</item>
+			<item>ElsIf</item>
+			<item>Else</item>
+			<item>EndIf</item>
+			<item>For</item>
+			<item>Each</item>
+			<item>In</item>
+			<item>To</item>
+			<item>While</item>
+			<item>Do</item>
+			<item>EndDo</item>
+			<item>Procedure</item>
+			<item>Function</item>
+			<item>EndProcedure</item>
+			<item>EndFunction</item>
+			<item>Var</item>
+			<item>Goto</item>
+			<item>Return</item>
+			<item>Continue</item>
+			<item>Break</item>
+			<item>And</item>
+			<item>Or</item>
+			<item>Not</item>
+			<item>Try</item>
+			<item>Except</item>
+			<item>Raise</item>
+			<item>EndTry</item>
+			<item>New</item>
+			<item>Execute</item>
+			<item>Val</item>
+			<item>Знач</item>
+			<item>Если</item>
+			<item>Тогда</item>
+			<item>ИначеЕсли</item>
+			<item>Иначе</item>
+			<item>КонецЕсли</item>
+			<item>Для</item>
+			<item>Каждого</item>
+			<item>Из</item>
+			<item>По</item>
+			<item>Пока</item>
+			<item>Цикл</item>
+			<item>КонецЦикла</item>
+			<item>Процедура</item>
+			<item>Функция</item>
+			<item>КонецПроцедуры</item>
+			<item>КонецФункции</item>
+			<item>Перем</item>
+			<item>Перейти</item>
+			<item>Возврат</item>
+			<item>Продолжить</item>
+			<item>Прервать</item>
+			<item>И</item>
+			<item>Или</item>
+			<item>Не</item>
+			<item>Попытка</item>
+			<item>Исключение</item>
+			<item>ВызватьИсключение</item>
+			<item>КонецПопытка</item>
+			<item>Новый</item>
+			<item>Выполнить</item>
+			<item>True</item>
+			<item>False</item>
+			<item>Undefined</item>
+			<item>Null</item>
+			<item>Истина</item>
+			<item>Ложь</item>
+			<item>Неопределено</item>
+			<item>Use</item>
+			<item>Использовать</item>
+			<item>Export</item>
+			<item>Экспорт</item>
+		</list>
+		<contexts>
+			<context attribute="Normal Text" lineEndContext="#pop" name="Normal Text">
+				<DetectSpaces context="#stay"/>
+				<Detect2Chars attribute="Comment" context="OneLineComment" char="/" char1="/" />
+
+				<AnyChar attribute="Symbol" context="#stay" String="[]&amp;|+,-/*%&lt;&gt;;?:#=" />
+				<AnyChar context="Number" String="0123456789" lookAhead="1" />
+
+				<DetectChar context="Date" char="'" />
+				<DetectChar attribute="String" char="&quot;" context="String" />
+
+				<keyword attribute="Keyword" context="#stay" String="keywords" />
+			</context>
+
+			<context attribute="Comment" lineEndContext="#pop" name="OneLineComment">
+				<DetectSpaces />
+				<IncludeRules context="##Comments"/>
+			</context>
+
+			<context attribute="Normal Text" lineEndContext="#stay" name="Number">
+				<RegExpr attribute="Decimal" context="#pop" String="\b([1-9][0-9]*+(_++[0-9_]++)*+)\b" />
+				<AnyChar attribute="Error" context="#pop" String="0123456789"/>
+			</context>
+
+			<context attribute="Normal Text" lineEndContext="#stay" name="Char">
+				<DetectChar attribute="Normal Text" context="#pop" char="'" />
+			</context>
+
+			<context attribute="String" lineEndContext="#stay" name="String">
+				<Detect2Chars attribute="Normal Text" context="#stay" char="&quot;" char1="&quot;" />
+				<Detect2Chars attribute="Comment" context="OneLineComment" char="/" char1="/" />
+				<DetectChar attribute="String" context="#pop" char="&quot;" />
+			</context>
+		</contexts>
+		<itemDatas>
+			<itemData name="Normal Text" defStyleNum="dsNormal" />
+			<itemData name="Keyword" defStyleNum="dsKeyword" />
+			<itemData name="Symbol" defStyleNum="dsOperator" />
+			<itemData name="Comment" defStyleNum="dsComment" />
+			<itemData name="Symbol" defStyleNum="dsOperator" />
+			<itemData name="String" defStyleNum="dsString" />
+		</itemDatas>
+	</highlighting>
+	<general>
+		<keywords casesensitive="0" />
+		<comment name="singleLine" start="//" />
+	</general>
+</language>
